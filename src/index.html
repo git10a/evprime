@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Prime 投資先共有用</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#2563eb">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <meta name="description" content="EV Prime投資先企業向けの特典・サービス検索システム">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div>
+                    <h1>EV Prime 投資先共有用</h1>
+                    <p class="lead">投資先企業向けの特典やサービスを検索・閲覧できます。</p>
+                </div>
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" class="theme-toggle" aria-label="ダークモード切り替え" title="ダークモード切り替え">
+                    <i class="bi bi-moon-fill dark-icon"></i>
+                    <i class="bi bi-sun-fill light-icon"></i>
+                </button>
+            </div>
+        </header>
+        
+        <div class="sticky-top">
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <i class="bi bi-search search-icon"></i>
+                    <input type="text" id="search-box" placeholder="会社名、サービス、タグで検索..." aria-label="企業名、サービス内容、タグで検索">
+                    <button id="clear-search" class="clear-search" aria-label="検索をクリア" style="display: none;">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                    <div class="search-shortcut">⌘K</div>
+                </div>
+                <div class="search-suggestions" id="search-suggestions" style="display: none;">
+                    <!-- 検索候補がここに動的に表示されます -->
+                </div>
+            </div>
+            <div class="filter-controls">
+                <button id="favorites-filter-btn" class="filter-btn" aria-label="お気に入りのみ表示">
+                    <i class="bi bi-star me-1"></i>
+                    お気に入り
+                </button>
+                <div id="tag-filters"></div>
+                <button id="clear-filters-btn" aria-label="すべてのフィルターをクリア">
+                    <i class="bi bi-x-circle me-1"></i>クリア
+                </button>
+            </div>
+        </div>
+        
+        <main id="gallery-view" class="row" role="main" aria-live="polite" aria-label="企業一覧"></main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <!-- 企業詳細モーダル -->
+    <div class="modal fade" id="companyModal" tabindex="-1" aria-labelledby="companyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <div class="modal-title-wrapper">
+                        <h2 class="modal-title" id="companyModalLabel">
+                            <span></span>
+                        </h2>
+                    </div>
+                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="モーダルを閉じる">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </header>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- トップに戻るボタン -->
+    <button id="back-to-top" title="トップに戻る">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <!-- 流体的な背景エフェクト -->
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        
+        <div class="footer-container">
+            <!-- Made with love -->
+            <div class="made-with-love">
+                <span>Made with</span>
+                <span class="heart" onclick="animateHeart(this)">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </span>
+                <span>by</span>
+                <span class="developer-name">KOTA</span>
+            </div>
+
+            <!-- ソーシャルリンク -->
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61578312594504"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-link"
+                   data-tooltip="Facebook">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+
+                <a href="https://x.com/LLM_KX"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-link"
+                   data-tooltip="X (Twitter)">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+
+                <a href="mailto:mxllm@proton.me"
+                   class="social-link"
+                   data-tooltip="Email">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
